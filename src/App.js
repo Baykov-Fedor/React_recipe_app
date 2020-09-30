@@ -1,26 +1,88 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from "./components/header/header.component";
+import MainPage from "./pages/main-page/main-page.component";
+
+import "./App.css";
+
+const SEARCHAPI = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      data: [],
+      badRequest: false,
+    };
+    this.getRecipe = this.getRecipe.bind(this);
+    this.searchRecipe = this.searchRecipe.bind(this);
+    this.badRequest = this.badRequest.bind(this);
+  }
+
+  componentDidMount() {
+    this.getRandomMeal();
+    this.setState({
+      badRequest: false,
+    });
+  }
+
+  badRequest() {
+    this.setState({
+      badRequest: true,
+    });
+  }
+
+  async getRandomMeal() {
+    const resp = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/random.php"
+    ).then((res) => res.json());
+    const randomMeal = resp.meals;
+    console.log(randomMeal);
+    this.setState({
+      data: randomMeal,
+    });
+  }
+
+  async searchRecipe(text) {
+    let resp = await fetch(SEARCHAPI + text).then((res) => res.json());
+    let recipeData = resp.meals;
+    console.log(recipeData);
+    if (recipeData === null) {
+      this.badRequest();
+      return;
+    }
+    this.setState({
+      data: recipeData,
+      badRequest: false,
+    });
+  }
+
+  async getRecipe(text) {}
+
+  render() {
+    const MyMainPage = () => <MainPage data={this.state.data} />;
+    return (
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header search={this.searchRecipe} />
+            {this.state.badRequest ? (
+              <div class="alert alert-danger" role="alert">
+                No results were found for your request.
+              </div>
+            ) : (
+              ""
+            )}
+            <Switch>
+              <Route exact path="/" component={MyMainPage} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
