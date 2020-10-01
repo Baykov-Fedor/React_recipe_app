@@ -23,14 +23,12 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getRandomMeal();
-    this.setState({
-      badRequest: false,
-    });
+    this.badRequest(false);
   }
 
-  badRequest() {
+  badRequest(bool) {
     this.setState({
-      badRequest: true,
+      badRequest: bool,
     });
   }
 
@@ -50,7 +48,7 @@ class App extends React.Component {
     let recipeData = resp.meals;
     console.log(recipeData);
     if (recipeData === null) {
-      this.badRequest();
+      this.badRequest(true);
       return;
     }
     this.setState({
@@ -67,9 +65,9 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <div className="container">
-            <Header search={this.searchRecipe} />
+            <Header search={this.searchRecipe} badRequest={this.badRequest} />
             {this.state.badRequest ? (
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 No results were found for your request.
               </div>
             ) : (
