@@ -1,5 +1,5 @@
 .modal-window {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
@@ -8,17 +8,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .full-recipe {
+  position: fixed;
+  max-height: 80%;
   width: 50%;
   background-color: white;
   border-radius: 10px;
   position: relative;
   padding: 2rem;
+  overflow: auto;
   &--header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     &--close-btn {
       position: absolute;
       top: 0;
@@ -27,7 +31,7 @@
       cursor: pointer;
     }
     &--img {
-      max-width: 60%;
+      max-width: 40%;
       object-fit: contain;
     }
     &--ingredients {

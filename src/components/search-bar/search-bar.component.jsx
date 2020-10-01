@@ -17,14 +17,18 @@ const SearchBar = (props) => {
       <label className="navbar--search--label">find a recipe: </label>
       <input
         className="form-control mr-sm-2"
-        type="search"
+        type="text"
         placeholder="Search"
         aria-label="Search"
         onChange={onChange}
         value={userInput}
       />
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
+      <button
+        className="form--search-btn"
+        type="submit"
+        style={{ outline: "none" }}
+      >
+        <i class="fas fa-search" />
       </button>
     </form>
   );
