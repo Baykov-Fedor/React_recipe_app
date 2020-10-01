@@ -71,7 +71,6 @@ class App extends React.Component {
       "https://www.themealdb.com/api/json/v1/1/random.php"
     ).then((res) => res.json());
     const randomMeal = resp.meals;
-    console.log(randomMeal);
     this.setState({
       data: randomMeal,
     });
@@ -80,7 +79,6 @@ class App extends React.Component {
   async searchRecipe(text) {
     let resp = await fetch(SEARCHAPI + text).then((res) => res.json());
     let recipeData = resp.meals;
-    console.log(recipeData);
     if (recipeData === null) {
       this.badRequest(true);
       return;
