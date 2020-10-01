@@ -15,21 +15,55 @@ class App extends React.Component {
     this.state = {
       data: [],
       badRequest: false,
+      favsItem: [],
     };
     this.getRecipe = this.getRecipe.bind(this);
     this.searchRecipe = this.searchRecipe.bind(this);
     this.badRequest = this.badRequest.bind(this);
+    this.addToFavs = this.addToFavs.bind(this);
+    this.delFromFavs = this.delFromFavs.bind(this);
   }
 
   componentDidMount() {
-    this.getRandomMeal();
-    this.badRequest(false);
+    const userFavs = JSON.parse(localStorage.getItem("userFavs"));
+    this.searchRecipe("");
+    if (userFavs === null) return;
+    else this.setState({ favsItem: userFavs });
   }
 
   badRequest(bool) {
     this.setState({
       badRequest: bool,
     });
+  }
+
+  addToFavs(data) {
+    const favsItem = this.state.favsItem;
+    if (favsItem.find((el) => el.idMeal === data.idMeal)) return;
+    else {
+      this.setState(
+        {
+          favsItem: [...favsItem, data],
+        },
+        () => localStorage.setItem("userFavs", JSON.stringify([...favsItem]))
+      );
+    }
+  }
+
+  delFromFavs(recipeId) {
+    let newArr = [...this.state.favsItem].filter(
+      (id) => id.idMeal !== recipeId
+    );
+    this.setState(
+      {
+        favsItem: [...newArr],
+      },
+      () =>
+        localStorage.setItem(
+          "userFavs",
+          JSON.stringify([...this.state.favsItem])
+        )
+    );
   }
 
   async getRandomMeal() {
@@ -60,7 +94,16 @@ class App extends React.Component {
   async getRecipe(text) {}
 
   render() {
-    const MyMainPage = () => <MainPage data={this.state.data} />;
+    const MyMainPage = () => (
+      <MainPage data={this.state.data} addToFavs={this.addToFavs} />
+    );
+    const MyFavPage = () => (
+      <MainPage
+        data={this.state.favsItem}
+        favPage={true}
+        delFromFavs={this.delFromFavs}
+      />
+    );
     return (
       <Router>
         <div className="App">
@@ -75,6 +118,7 @@ class App extends React.Component {
             )}
             <Switch>
               <Route exact path="/" component={MyMainPage} />
+              <Route exact path="/favorite_recipes" component={MyFavPage} />
             </Switch>
           </div>
         </div>

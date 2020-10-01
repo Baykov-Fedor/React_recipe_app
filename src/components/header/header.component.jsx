@@ -9,7 +9,13 @@ const Header = ({ search, badRequest }) => (
     <Link to="/">
       <span className="navbar--brand" onClick={() => badRequest(false)} />
     </Link>
-    <SearchBar search={search} />
+    <div className="navbar--controls">
+      <SearchBar search={search} />
+      <Link to="/favorite_recipes" className="navbar--controls--saved">
+        <i className="far fa-heart" style={{ fontSize: "1.4rem" }} />
+        <span style={{ fontSize: "0.8rem" }}>Saved</span>
+      </Link>
+    </div>
   </nav>
 );
 

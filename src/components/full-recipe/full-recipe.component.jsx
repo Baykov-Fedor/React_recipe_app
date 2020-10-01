@@ -2,7 +2,7 @@ import React from "react";
 
 import "./full-recipe.styles.scss";
 
-const FullRecipe = ({ openRecipe, recipeData }) => {
+const FullRecipe = ({ openRecipe, recipeData, favPage, addToFavs }) => {
   const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
   const makeListOfIngredients = (data) => {
     let arrOfIndegr = [];
@@ -46,7 +46,24 @@ const FullRecipe = ({ openRecipe, recipeData }) => {
             </ul>
           </div>
         </div>
-        <div className="full-recipe--footer">{recipeData.strInstructions}</div>
+        <div className="full-recipe--footer">
+          {recipeData.strInstructions}
+          {favPage ? (
+            ""
+          ) : (
+            <button
+              onClick={() => addToFavs(recipeData)}
+              className="btn btn-success"
+              style={{
+                marginTop: "1rem",
+                backgroundColor: "#00b4ae",
+                borderColor: "#00b4ae",
+              }}
+            >
+              SAVE RECIPE
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

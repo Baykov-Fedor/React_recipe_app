@@ -1,16 +1,33 @@
-.navbar--brand {
-  display: block;
-  width: 342px;
-  height: 95px;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-image: url(https://www.simplyrecipes.com/wp-content/themes/simply/assets/i/svg/logo-text.svg?v=2);
-}
+.navbar {
+  &--brand {
+    display: block;
+    width: 342px;
+    height: 95px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url(https://www.simplyrecipes.com/wp-content/themes/simply/assets/i/svg/logo-text.svg?v=2);
+  }
+  &--search--label {
+    color: #f04948;
 
-.navbar--search--label {
-  color: #f04948;
-
-  font-weight: 700;
-  font-size: 1.4em;
-  margin-right: 0.5rem;
+    font-weight: 700;
+    font-size: 1.4em;
+    margin-right: 0.5rem;
+  }
+  &--controls {
+    color: #00b4ae;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    &--saved {
+      color: #00b4ae;
+      margin-top: 3px;
+      display: flex;
+      flex-direction: column;
+      &:hover {
+        text-decoration: none;
+        color: #f04948;
+      }
+    }
+  }
 }

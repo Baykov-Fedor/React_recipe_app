@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { withRouter } from "react-router-dom";
 import "./search-bar.styles.scss";
 
 const SearchBar = (props) => {
@@ -8,6 +8,7 @@ const SearchBar = (props) => {
     e.preventDefault();
     props.search(userInput);
     setUserInput("");
+    props.history.push("/");
   };
   const onChange = (e) => {
     setUserInput(e.target.value);
@@ -28,10 +29,10 @@ const SearchBar = (props) => {
         type="submit"
         style={{ outline: "none" }}
       >
-        <i class="fas fa-search" />
+        <i className="fas fa-search" style={{ color: "#00b4ae" }} />
       </button>
     </form>
   );
 };
 
-export default SearchBar;
+export default withRouter(SearchBar);
