@@ -14,7 +14,7 @@
 .full-recipe {
   position: fixed;
   max-height: 80%;
-  width: 50%;
+  max-width: 50rem;
   background-color: white;
   border-radius: 10px;
   position: relative;
@@ -22,6 +22,7 @@
   overflow: auto;
   &--header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     &--close-btn {
       position: absolute;
@@ -31,8 +32,10 @@
       cursor: pointer;
     }
     &--img {
-      max-width: 40%;
+      max-width: 100%;
+      width: 20rem;
       object-fit: contain;
+      border-radius: 10px;
     }
     &--ingredients {
       border: 2px solid rgba(0, 0, 0, 0.15);
@@ -52,5 +55,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
   }
 }

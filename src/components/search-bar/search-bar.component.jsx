@@ -16,21 +16,23 @@ const SearchBar = (props) => {
   return (
     <form className="form-inline" onSubmit={findRecipe}>
       <label className="navbar--search--label">find a recipe: </label>
-      <input
-        className="form-control mr-sm-2"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-        onChange={onChange}
-        value={userInput}
-      />
-      <button
-        className="form--search-btn"
-        type="submit"
-        style={{ outline: "none" }}
-      >
-        <i className="fas fa-search" style={{ color: "#00b4ae" }} />
-      </button>
+      <div className="form--search-bar">
+        <input
+          className="form-control mr-sm-2"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+          onChange={onChange}
+          value={userInput}
+        />
+        <button
+          className="form--search-btn"
+          type="submit"
+          style={{ outline: "none" }}
+        >
+          <i className="fas fa-search" style={{ color: "#00b4ae" }} />
+        </button>
+      </div>
     </form>
   );
 };

@@ -1,11 +1,7 @@
 .navbar {
   &--brand {
     display: block;
-    width: 342px;
-    height: 95px;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-image: url(https://www.simplyrecipes.com/wp-content/themes/simply/assets/i/svg/logo-text.svg?v=2);
+    width: 100%;
   }
   &--search--label {
     color: #f04948;
@@ -17,6 +13,7 @@
   &--controls {
     color: #00b4ae;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     cursor: pointer;
     &--saved {
@@ -28,6 +25,9 @@
         text-decoration: none;
         color: #f04948;
       }
+    }
+    @media screen and (max-width: 992px) {
+      margin-top: 1rem;
     }
   }
 }

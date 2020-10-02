@@ -1,4 +1,5 @@
 import React from "react";
+import CustomButton from "../custom-button/custom-button.component";
 
 import "./full-recipe.styles.scss";
 
@@ -47,21 +48,21 @@ const FullRecipe = ({ openRecipe, recipeData, favPage, addToFavs }) => {
           </div>
         </div>
         <div className="full-recipe--footer">
-          {recipeData.strInstructions}
+          <span style={{ textAlign: "justify" }}>
+            {recipeData.strInstructions}
+          </span>
+
           {favPage ? (
             ""
           ) : (
-            <button
+            <CustomButton
               onClick={() => addToFavs(recipeData)}
-              className="btn btn-success"
               style={{
                 marginTop: "1rem",
-                backgroundColor: "#00b4ae",
-                borderColor: "#00b4ae",
               }}
             >
               SAVE RECIPE
-            </button>
+            </CustomButton>
           )}
         </div>
       </div>

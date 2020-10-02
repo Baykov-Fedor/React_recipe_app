@@ -7,7 +7,11 @@ import "./header.styles.scss";
 const Header = ({ search, badRequest }) => (
   <nav className="navbar navbar-light bg-light">
     <Link to="/">
-      <span className="navbar--brand" onClick={() => badRequest(false)} />
+      <img
+        src="https://www.simplyrecipes.com/wp-content/themes/simply/assets/i/svg/logo-text.svg?v=2"
+        className="navbar--brand"
+        onClick={() => badRequest(false)}
+      />
     </Link>
     <div className="navbar--controls">
       <SearchBar search={search} />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CustomButton from "../custom-button/custom-button.component";
 import FullRecipe from "../full-recipe/full-recipe.component";
 
 import "./recipe-item.styles.scss";
@@ -17,23 +18,19 @@ const RecipeItem = ({ recipeData, favPage, addToFavs, delFromFavs }) => {
         <div className="card-body">
           <h5 className="card-title">{recipeData.strMeal}</h5>
           <p className="card-text">
-            {recipeData.strInstructions.slice(0, 100)}...
+            {recipeData.strInstructions.slice(0, 95)}...
           </p>
           <div className="card-body--controls">
-            <button
-              onClick={() => openRecipe(true)}
-              className="btn btn-danger"
-              style={{ backgroundColor: "#00b4ae", borderColor: "#00b4ae" }}
-            >
+            <CustomButton onClick={() => openRecipe(true)}>
               FULL RECIPE
-            </button>
+            </CustomButton>
             {favPage ? (
-              <button
+              <CustomButton
                 onClick={() => delFromFavs(recipeData.idMeal)}
-                className="btn btn-danger"
+                red={true}
               >
                 DELETE RECIPE
-              </button>
+              </CustomButton>
             ) : (
               ""
             )}

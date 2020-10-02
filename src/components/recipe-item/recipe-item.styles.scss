@@ -1,10 +1,17 @@
 .card {
-  width: 20rem;
+  max-width: 20rem;
   margin-top: 3rem;
 }
 
-.btn-danger {
-  background-color: #f04948;
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  color: white;
+  background-color: #00b4ae;
+  border-color: #00b4ae;
+  transition: all 0.3ms;
 }
 
 .card-body--controls {
